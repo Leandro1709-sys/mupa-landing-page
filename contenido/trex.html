@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tyrannosaurus Rex - Museo Paleontológico | Gobierno de San Juan</title>
+    <meta name="description" content="Descubrí al Tyrannosaurus Rex en el Museo Paleontológico del Gobierno de San Juan. El rey de los dinosaurios.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        tierra: {
+                            50: '#fbf7f4',
+                            100: '#f5ebe3',
+                            200: '#ebd5c4',
+                            300: '#deb89b',
+                            400: '#d09570',
+                            500: '#c5794f',
+                            600: '#b9603e',
+                            700: '#9a4a33',
+                            800: '#7e3e2f',
+                            900: '#663429',
+                        },
+                        oxido: {
+                            50: '#fdf5f3',
+                            100: '#f9e8e3',
+                            200: '#f2cfc4',
+                            300: '#e8ae9c',
+                            400: '#db8270',
+                            500: '#cf5e4d',
+                            600: '#b53d32',
+                            700: '#972f2b',
+                            800: '#7e2928',
+                            900: '#682624',
+                        },
+                        arena: {
+                            50: '#fdfbf7',
+                            100: '#f9f5eb',
+                            200: '#f2ebd4',
+                            300: '#e8dcb2',
+                            400: '#dbc78a',
+                            500: '#d0b368',
+                            600: '#c29a4d',
+                            700: '#a27a3d',
+                            800: '#856234',
+                            900: '#6d502d',
+                        },
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5794f;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b9603e;
+        }
+        
+        /* Hero gradient overlay */
+        .hero-overlay {
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.4) 0%,
+                rgba(0, 0, 0, 0.6) 50%,
+                rgba(0, 0, 0, 0.9) 100%
+            );
+        }
+        
+        /* Card hover effect */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Button hover effect */
+        .btn-primary {
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px -10px rgba(197, 121, 79, 0.5);
+        }
+        
+        /* Navigation link underline effect */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #c5794f;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile menu animation */
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .mobile-menu.hidden {
+            transform: translateX(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .mobile-menu.visible {
+            transform: translateX(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-neutral-900 text-white font-sans antialiased">
+    
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="header">
+        <div class="bg-black/80 backdrop-blur-md border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 md:h-20">
+                    
+                    <!-- Logo -->
+                    <a href="../index.html" class="flex items-center space-x-2 group">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-tierra-500 to-oxido-600 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-lg md:text-xl font-bold tracking-tight text-white group-hover:text-tierra-400 transition-colors">MUPA</span>
+                            <span class="text-[10px] md:text-xs text-neutral-400 tracking-wider">San Juan</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Desktop Navigation -->
+                    <nav class="hidden md:flex items-center space-x-8">
+                        <a href="../index.html#exhibiciones" class="nav-link text-sm font-medium text-neutral-300 hover:text-white transition-colors">Exhibiciones</a>
+                        <a href="../index.html#visitas" class="nav-link text-sm font-medium text-neutral-300 hover:text-white transition-colors">Visitas</a>
+                        <a href="../index.html#investigacion" class="nav-link text-sm font-medium text-neutral-300 hover:text-white transition-colors">Investigación</a>
+                        <a href="../index.html#contacto" class="nav-link text-sm font-medium text-neutral-300 hover:text-white transition-colors">Contacto</a>
+                    </nav>
+                    
+                    <!-- CTA Button Desktop -->
+                    <a href="../index.html#visitas" class="hidden md:inline-flex btn-primary items-center px-5 py-2.5 bg-gradient-to-r from-tierra-500 to-oxido-600 text-white text-sm font-semibold rounded-full">
+                        Planear Visita
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-neutral-300 hover:text-white hover:bg-white/10 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="menu-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="close-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu hidden fixed inset-0 top-16 bg-neutral-900/98 backdrop-blur-lg z-40 md:hidden">
+            <div class="flex flex-col items-center justify-center h-full space-y-8">
+                <a href="../index.html#exhibiciones" class="text-2xl font-medium text-white hover:text-tierra-400 transition-colors mobile-link">Exhibiciones</a>
+                <a href="../index.html#visitas" class="text-2xl font-medium text-white hover:text-tierra-400 transition-colors mobile-link">Visitas</a>
+                <a href="../index.html#investigacion" class="text-2xl font-medium text-white hover:text-tierra-400 transition-colors mobile-link">Investigación</a>
+                <a href="../index.html#contacto" class="text-2xl font-medium text-white hover:text-tierra-400 transition-colors mobile-link">Contacto</a>
+                <a href="../index.html#visitas" class="mt-8 inline-flex items-center px-8 py-3 bg-gradient-to-r from-tierra-500 to-oxido-600 text-white font-semibold rounded-full mobile-link">
+                    Planear Visita
+                    <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.unsplash.com/photo-1599590984817-0c15f45b64a8?w=1920&q=80" 
+                alt="Tyrannosaurus Rex - Museo Paleontológico" 
+                class="w-full h-full object-cover"
+            >
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+        
+        <!-- Decorative Elements -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-1/4 left-10 w-64 h-64 bg-tierra-500/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-10 w-96 h-96 bg-oxido-500/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
+            <div class="animate-fade-in-up">
+                <!-- Badge -->
+                <div class="inline-flex items-center px-4 py-2 mb-6 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+                    <svg class="w-4 h-4 text-tierra-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm font-medium text-neutral-200">Gobierno de San Juan</span>
+                </div>
+                
+                <!-- Main Title -->
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
+                    TYRANNOSAURUS<br>
+                    <span class="bg-gradient-to-r from-tierra-400 via-arena-300 to-oxido-400 bg-clip-text text-transparent">REX</span>
+                </h1>
+                
+                <!-- Subtitle -->
+                <p class="text-lg sm:text-xl md:text-2xl text-neutral-300 max-w-3xl mx-auto mb-10 font-light">
+                    El rey de los dinosaurios. Descubrí al depredador más temido del Cretácico en nuestra exhibición interactiva.
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="../index.html#visitas" class="btn-primary inline-flex items-center px-8 py-4 bg-gradient-to-r from-tierra-500 to-oxido-600 text-white font-semibold rounded-full text-lg shadow-lg shadow-tierra-500/25">
+                        Planear Visita
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </a>
+                    <a href="#mas-informacion" class="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full text-lg border border-white/20 hover:bg-white/20 transition-colors">
+                        Más información
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section id="mas-informacion" class="py-20 md:py-32 bg-neutral-900 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Image -->
+                <div class="relative">
+                    <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+                        <img 
+                            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80" 
+                            alt="Esqueleto de Tyrannosaurus Rex" 
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-neutral-800 rounded-xl p-6 border border-neutral-700 shadow-xl">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-tierra-500 rounded-full flex items-center justify-center">
+                                <span class="text-xl font-bold text-white">68</span>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold">Millones de años</p>
+                                <p class="text-neutral-400 text-sm">del Cretácico tardío</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content -->
+                <div>
+                    <span class="inline-block px-4 py-1 mb-4 bg-oxido-500/20 text-oxido-400 text-sm font-semibold rounded-full uppercase tracking-wider">Fósil Emblemático</span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">El Depredador Supremo</h2>
+                    <p class="text-neutral-300 text-lg mb-6">
+                        El Tyrannosaurus Rex fue uno de los depredadores terrestres más grandes que jamás haya existido. Con una longitud de hasta 12 metros y dientes de hasta 30 centímetros, dominó los ecosistemas del Cretácico tardío.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-tierra-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-neutral-300">Mordida de hasta 12,800 libras de fuerza</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-tierra-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-neutral-300">Velocidad estimada de 32 km/h</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-tierra-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-neutral-300">Visión binocular excelente para cazar</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-tierra-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-neutral-300">Brazos pequeños pero muy musculosos</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-tierra-600/20 to-oxido-600/20 rounded-2xl p-6 border border-tierra-500/30">
+                        <h4 class="text-lg font-semibold text-white mb-2">Datos Curiosos</h4>
+                        <p class="text-neutral-400 text-sm">
+                            A pesar de su reputación como depredador solitario, evidencias recientes sugieren que los T. Rex pueden haber cazado en grupos familiares, similar a los lobos modernos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-neutral-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Logo & Description -->
+                <div class="md:col-span-2">
+                    <a href="../index.html" class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-tierra-500 to-oxido-600 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-xl font-bold tracking-tight text-white">MUPA</span>
+                            <span class="text-xs text-neutral-400 tracking-wider">San Juan</span>
+                        </div>
+                    </a>
+                    <p class="text-neutral-400 text-sm max-w-md mb-6">
+                        Museo Paleontológico del Gobierno de San Juan. Tu puerta de entrada a la Tierra de Gigantes.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center text-neutral-400 hover:bg-tierra-500 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center text-neutral-400 hover:bg-tierra-500 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center text-neutral-400 hover:bg-tierra-500 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center text-neutral-400 hover:bg-tierra-500 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Enlaces rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html#exhibiciones" class="text-neutral-400 hover:text-tierra-400 transition-colors text-sm">Exhibiciones</a></li>
+                        <li><a href="../index.html#visitas" class="text-neutral-400 hover:text-tierra-400 transition-colors text-sm">Planificar visita</a></li>
+                        <li><a href="../index.html#investigacion" class="text-neutral-400 hover:text-tierra-400 transition-colors text-sm">Investigación</a></li>
+                        <li><a href="#" class="text-neutral-400 hover:text-tierra-400 transition-colors text-sm">Educación</a></li>
+                        <li><a href="#" class="text-neutral-400 hover:text-tierra-400 transition-colors text-sm">Tienda</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Institutional Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Institucional</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://www.sanjuan.gob.ar" target="_blank" class="text-neutral-400 hover:text-tierra-400 transition-colors text-sm">Gobierno de San Juan</a></li>
+                        <li><a href="#" class="text-neutral-400 hover:text-tierra-400 transition-colors text-sm">Ministerio de Turismo y Cultura</a></li>
+                        <li><a href="#" class="text-neutral-400 hover:text-tierra-400 transition-colors text-sm">Parque Provincial Ischigualasto</a></li>
+                        <li><a href="#" class="text-neutral-400 hover:text-tierra-400 transition-colors text-sm">UNESCO</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="border-t border-neutral-800 pt-8 flex flex-col md:flex-row items-center justify-between">
+                <p class="text-neutral-500 text-sm text-center md:text-left">
+                    © 2024 Museo Paleontológico - Gobierno de San Juan. Todos los derechos reservados.
+                </p>
+                <div class="flex items-center space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-neutral-500 hover:text-neutral-400 text-sm transition-colors">Política de privacidad</a>
+                    <a href="#" class="text-neutral-500 hover:text-neutral-400 text-sm transition-colors">Términos de uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        function toggleMobileMenu() {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('visible');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('visible');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        
+        // Close mobile menu when clicking on links
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
